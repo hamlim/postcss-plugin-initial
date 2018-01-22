@@ -1,35 +1,30 @@
-var postcss = require('postcss');
-var makeFallbackFunction = require('./lib/rules-fabric');
+const postcss = require('postcss')
+const cssInitials = require('css-initials')
 
-module.exports = postcss.plugin('postcss-initial', function (opts) {
-  opts = opts || {};
-  opts.reset = opts.reset || 'all';
-  opts.replace = opts.replace || false;
-  var getFallback = makeFallbackFunction(opts.reset === 'inherited');
-  var getPropPrevTo = function (prop, decl) {
-    var foundPrev = false;
-    decl.parent.walkDecls(function (child) {
-      if (child.prop === decl.prop && child.value !== decl.value) {
-        foundPrev = true;
-      }
-    });
-    return foundPrev;
-  };
-  return function (css) {
-    css.walkDecls(function (decl) {
-      if (decl.value.indexOf('initial') < 0) {
-        return;
-      }
-      var fallBackRules = getFallback(decl.prop, decl.value);
-      if (fallBackRules.length === 0) return;
-      fallBackRules.forEach(function (rule) {
-        if ( !getPropPrevTo(decl.prop, decl) ) {
-          decl.cloneBefore(rule);
+module.exports = postcss.plugin('postcss-plugin-initial', ({ replace: false, skipSupports: true } = {}) => {
+  return css => {
+    css.walkRules(rule => {
+      rule.walkDecls(decl => {
+        if (decl.value.indexOf('initial') < 0) {
+          return
         }
-      });
-      if (opts.replace === true) {
-        decl.remove();
-      }
-    });
-  };
-});
+        if (
+          opts.skipSupports &&
+          rule.parent &&
+          rule.parent.type === 'atrule' &&
+          rule.parent.name &&
+          rule.parent.name.includes('supports') &&
+          rule.parent.params.includes('initial')
+        ) {
+          return
+        }
+        const fallback = initialValues[decl.prop] || 'initial'
+        if (opts.replace) {
+          decl.replaceWith(decl.clone({ value: fallback }))
+        } else {
+          decl.cloneBefore({ value: fallback })
+        }
+      })
+    })
+  }
+})

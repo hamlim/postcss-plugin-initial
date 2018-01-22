@@ -1,24 +1,10 @@
-# PostCSS Initial
-[![CSS Standard Status][css-img]][css] [![Build Status][ci-img]][ci] [![NPM Module][npm-img]][npm] [![David DM][david-img]][david]
+# PostCSS Plugin Initial
 
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo-leftp.png">
 
-[PostCSS] plugin to fallback `initial` keyword. Very useful in combination with
-[postcss-autoreset][reset].
-
-[PostCSS]: https://github.com/postcss/postcss
-[css-img]: https://jonathantneal.github.io/css-db/badge/css-cascade-all-shorthand.svg
-[css]:     https://jonathantneal.github.io/css-db/#css-cascade-all-shorthand
-[ci-img]:  https://travis-ci.org/maximkoretskiy/postcss-initial.svg
-[ci]:      https://travis-ci.org/maximkoretskiy/postcss-initial
-[npm-img]: https://badge.fury.io/js/postcss-initial.svg
-[npm]:     https://www.npmjs.com/package/postcss-initial
-[david-img]:   https://david-dm.org/maximkoretskiy/postcss-initial.svg
-[david]:   https://david-dm.org/maximkoretskiy/postcss-initial
-[reset]:   https://github.com/maximkoretskiy/postcss-autoreset
-
+[PostCSS] plugin to fallback `initial` keyword.
 
 ```css
 a {
@@ -27,9 +13,8 @@ a {
   white-space: initial;
 }
 p {
-  background: url(/img1.png),
-              url(/img2.png);
-  background-repeat: initial no-repeat
+  background: url(/img1.png), url(/img2.png);
+  background-repeat: initial no-repeat;
 }
 ```
 
@@ -43,15 +28,15 @@ a {
   white-space: initial;
 }
 p {
-  background: url(/img1.png),
-              url(/img2.png);
-  background-repeat: repeat no-repeat
+  background: url(/img1.png), url(/img2.png);
+  background-repeat: repeat no-repeat;
 }
 ```
 
-**Killer feature!**
+**Features:**
 
 Universal reset from future css!
+
 ```css
 a {
   all: initial;
@@ -146,14 +131,9 @@ a {
 }
 ```
 
+Support for not changing `initial` values inside `@support` blocks
+
 ## Options
-
-### reset
-
-Takes `string`.
-Describes what subset of rules should be unsetted with `all` property (to reduce code weight).
-Possible subsets: `all`, `inherited`.
-Default value: `'all'`.
 
 ### replace
 
@@ -164,11 +144,11 @@ Default value: `false`.
 ## Usage
 
 ```js
-postcss([ require('postcss-initial')({
-  reset: 'inherited' // reset only inherited rules
-}) ])
+postcss([
+  require('postcss-initial')({
+    replace: true,
+  }),
+])
 ```
-
-See [PostCSS] docs for examples for your environment.
 
 ## [Changelog](./CHANGELOG.md)

@@ -6,6 +6,14 @@
 
 [PostCSS] plugin to fallback `initial` keyword.
 
+## Installation
+
+```
+yarn add postcss-plugin-initial # or npm install postcss-plugin-initial
+```
+
+## Example
+
 ```css
 a {
   animation: initial;

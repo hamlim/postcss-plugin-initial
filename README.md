@@ -4,7 +4,7 @@
      title="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo-leftp.png">
 
-[PostCSS] plugin to fallback `initial` keyword.
+PostCSS plugin to fallback `initial` keyword.
 
 ## Installation
 

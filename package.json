@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mhamlin/postcss-plugin-initial.git"
+    "url": "https://github.com/hamlim/postcss-plugin-initial.git"
   },
   "dependencies": {
     "css-initials": "^0.2.0",

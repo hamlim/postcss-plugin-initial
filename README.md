@@ -33,106 +33,6 @@ p {
 }
 ```
 
-**Features:**
-
-Universal reset from future css!
-
-```css
-a {
-  all: initial;
-}
-```
-
-```css
-a {
-  animation: none 0s ease 0s 1 normal none running;
-  backface-visibility: visible;
-  background: transparent none repeat 0 0 / auto auto padding-box border-box scroll;
-  border: medium none currentColor;
-  border-collapse: separate;
-  border-image: none;
-  border-radius: 0;
-  border-spacing: 0;
-  bottom: auto;
-  box-shadow: none;
-  box-sizing: content-box;
-  caption-side: top;
-  clear: none;
-  clip: auto;
-  color: #000;
-  columns: auto;
-  column-count: auto;
-  column-fill: balance;
-  column-gap: normal;
-  column-rule: medium none currentColor;
-  column-span: 1;
-  column-width: auto;
-  content: normal;
-  counter-increment: none;
-  counter-reset: none;
-  cursor: auto;
-  direction: ltr;
-  display: inline;
-  empty-cells: show;
-  float: none;
-  font-family: serif;
-  font-size: medium;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: normal;
-  height: auto;
-  hyphens: none;
-  left: auto;
-  letter-spacing: normal;
-  list-style: disc outside none;
-  margin: 0;
-  max-height: none;
-  max-width: none;
-  min-height: 0;
-  min-width: 0;
-  opacity: 1;
-  orphans: 2;
-  outline: medium none invert;
-  overflow: visible;
-  overflow-x: visible;
-  overflow-y: visible;
-  padding: 0;
-  page-break-after: auto;
-  page-break-before: auto;
-  page-break-inside: auto;
-  perspective: none;
-  perspective-origin: 50% 50%;
-  position: static;
-  right: auto;
-  tab-size: 8;
-  table-layout: auto;
-  text-align: left;
-  text-align-last: auto;
-  text-decoration: none;
-  text-indent: 0;
-  text-shadow: none;
-  text-transform: none;
-  top: auto;
-  transform: none;
-  transform-origin: 50% 50% 0;
-  transform-style: flat;
-  transition: none 0s ease 0s;
-  unicode-bidi: normal;
-  vertical-align: baseline;
-  visibility: visible;
-  white-space: normal;
-  widows: 2;
-  width: auto;
-  word-spacing: normal;
-  z-index: auto;
-  all: initial;
-}
-```
-
-Support for not changing `initial` values inside `@support` blocks
-
 ## Options
 
 ### replace
@@ -141,11 +41,27 @@ Takes `boolean`.
 Replace the `initial` with the fallback instead of adding it.
 Default value: `false`.
 
+### skipSupports
+
+Takes `boolean`.
+Doesn't change `initial` values when used within an `@supports` ruleset and the supports check includes the `initial` keyword:
+
+```css
+@supports (display: initial) {
+  .class {
+    /* Skipped if `skipSupports` is true */
+    background-color: initial;
+  }
+}
+```
+
+Default value: `true`.
+
 ## Usage
 
 ```js
 postcss([
-  require('postcss-initial')({
+  require('postcss-plugin-initial')({
     replace: true,
   }),
 ])

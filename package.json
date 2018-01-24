@@ -1,8 +1,13 @@
 {
   "name": "postcss-plugin-initial",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "PostCSS plugin to fallback initial keyword.",
-  "keywords": ["postcss", "css", "postcss-plugin", "reset"],
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "reset"
+  ],
   "author": "Matthew Hamlin <hamlim@outlook.com>",
   "license": "MIT",
   "repository": {
